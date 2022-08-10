@@ -93,10 +93,7 @@ LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/HAL3 \
         $(call project-path-for,qcom-media)/libstagefrighthw \
         $(call project-path-for,qcom-media)/mm-core/inc \
-        hardware/qcom/media/msm8998/libstagefrighthw \
-        hardware/qcom/media/msm8998/mm-core/inc \
-        $(TARGET_OUT_HEADERS)/mm-camera-lib/cp/prebuilt 
-
+        $(TARGET_OUT_HEADERS)/mm-camera-lib/cp/prebuilt
 
 LOCAL_HEADER_LIBRARIES := camera_common_headers
 LOCAL_HEADER_LIBRARIES += display_headers

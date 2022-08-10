@@ -6,9 +6,5 @@
   {
     "repository": "android_kernel_smartisan_sdm660",
     "target_path": "kernel/smartisan/sdm660"
-  },
-  {
-    "repository": "android_packages_apps_GcamGOPrebuilt",
-    "target_path": "packages/apps/GcamGOPrebuilt"
   }
 ]

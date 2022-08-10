@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-# NFC support check
 if [ $(cat /sys/hwinfo/nfc_support) = "nfc_support=0" ]; then
+  echo "NFC is not supported"
   rm -rf /system/system/priv-app/Tag
   rm -rf /system/system/vendor/etc/*nfc*
   rm -rf /system/system/vendor/bin/hw/vendor.nxp.hardware.nfc@2.0-service

@@ -33,11 +33,17 @@
     <ctl name="LSM3 Mixer INT3_MI2S_TX" value="0" />
     <ctl name="LSM4 Mixer INT3_MI2S_TX" value="0" />
     <ctl name="LSM5 Mixer INT3_MI2S_TX" value="0" />
+    <ctl name="LSM6 Mixer INT3_MI2S_TX" value="0" />
+    <ctl name="LSM7 Mixer INT3_MI2S_TX" value="0" />
+    <ctl name="LSM8 Mixer INT3_MI2S_TX" value="0" />
     <ctl name="LSM1 Port" value="None" />
     <ctl name="LSM2 Port" value="None" />
     <ctl name="LSM3 Port" value="None" />
     <ctl name="LSM4 Port" value="None" />
     <ctl name="LSM5 Port" value="None" />
+    <ctl name="LSM6 Port" value="None" />
+    <ctl name="LSM7 Port" value="None" />
+    <ctl name="LSM8 Port" value="None" />
     <ctl name="INT3_MI2S_TX LSM Function" value="None" />
     <ctl name="DEC1 MUX" value="ZERO" />
     <ctl name="DEC2 MUX" value="ZERO" />
@@ -79,16 +85,19 @@
     <path name="listen-voice-wakeup-6">
         <ctl name="INT3_MI2S_TX LSM Function" value="SWAUDIO" />
         <ctl name="LSM6 Port" value="INT3_MI2S_TX" />
+        <ctl name="LSM6 Mixer INT3_MI2S_TX" value="1" />
     </path>
 
     <path name="listen-voice-wakeup-7">
         <ctl name="INT3_MI2S_TX LSM Function" value="SWAUDIO" />
         <ctl name="LSM7 Port" value="INT3_MI2S_TX" />
+        <ctl name="LSM7 Mixer INT3_MI2S_TX" value="1" />
     </path>
 
     <path name="listen-voice-wakeup-8">
         <ctl name="INT3_MI2S_TX LSM Function" value="SWAUDIO" />
         <ctl name="LSM8 Port" value="INT3_MI2S_TX" />
+        <ctl name="LSM8 Mixer INT3_MI2S_TX" value="1" />
     </path>
 
     <path name="listen-voice-wakeup-1 preproc">
@@ -124,16 +133,19 @@
     <path name="listen-voice-wakeup-6 preproc">
         <ctl name="INT3_MI2S_TX LSM Function" value="SWAUDIO" />
         <ctl name="LSM6 Port" value="ADM_LSM_TX" />
+        <ctl name="LSM6 Mixer INT3_MI2S_TX" value="1" />
     </path>
 
     <path name="listen-voice-wakeup-7 preproc">
         <ctl name="INT3_MI2S_TX LSM Function" value="SWAUDIO" />
         <ctl name="LSM7 Port" value="ADM_LSM_TX" />
+        <ctl name="LSM7 Mixer INT3_MI2S_TX" value="1" />
     </path>
 
     <path name="listen-voice-wakeup-8 preproc">
         <ctl name="INT3_MI2S_TX LSM Function" value="SWAUDIO" />
         <ctl name="LSM8 Port" value="ADM_LSM_TX" />
+        <ctl name="LSM8 Mixer INT3_MI2S_TX" value="1" />
     </path>
 
     <path name="listen-ape-handset-mic">

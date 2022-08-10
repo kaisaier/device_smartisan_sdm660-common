@@ -32,11 +32,31 @@ if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
 
+function blob_fixup() {
+    case "${1}" in
+    vendor/lib64/libwvhidl.so)
+        "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
+        ;;
+    # Patch DRM blob to resolve moved symbol
+    vendor/lib/mediadrm/libwvdrmengine.so)
+        "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
+        ;;
+    vendor/lib64/mediadrm/libwvdrmengine.so)
+        "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
+        ;;
+    vendor/lib64/libsettings.so)
+        "${PATCHELF}" --replace-needed "libprotobuf-cpp-full.so" "libprotobuf-cpp-full-v29.so" "${2}"
+        ;;
+    esac
+}
+
 if [ -z "${ONLY_TARGET}" ] && [ -z "${ONLY_DEVICE_COMMON}" ]; then
     # Initialize the helper for common device
     setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true "${CLEAN_VENDOR}"
 
     extract "${MY_DIR}/proprietary-files.txt" "${SRC}" ${KANG} --section "${SECTION}"
+    extract "${MY_DIR}/proprietary-files-qc.txt" "${SRC}" ${KANG} --section "${SECTION}"
+    extract "${MY_DIR}/proprietary-files-qc-perf.txt" "${SRC}" ${KANG} --section "${SECTION}"
 fi
 
 if [ -z "${ONLY_COMMON}" ] && [ -z "${ONLY_TARGET}" ] && [ -s "${MY_DIR}/../${DEVICE_SPECIFIED_COMMON}/proprietary-files.txt" ];then
@@ -44,7 +64,9 @@ if [ -z "${ONLY_COMMON}" ] && [ -z "${ONLY_TARGET}" ] && [ -s "${MY_DIR}/../${DE
     source "${MY_DIR}/../${DEVICE}/extract-files.sh"
     setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
-    extract "${MY_DIR}/../${DEVICE}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
+    extract "${MY_DIR}/proprietary-files.txt" "${SRC}" ${KANG} --section "${SECTION}"
+    extract "${MY_DIR}/proprietary-files-qc.txt" "${SRC}" ${KANG} --section "${SECTION}"
+    extract "${MY_DIR}/proprietary-files-qc-perf.txt" "${SRC}" ${KANG} --section "${SECTION}"
 fi
 
 "${MY_DIR}/setup-makefiles.sh"

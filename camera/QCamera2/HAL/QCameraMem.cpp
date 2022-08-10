@@ -54,6 +54,7 @@ typedef struct encoder_media_buffer_type media_metadata_buffer;
 
 extern "C" {
 #include "mm_camera_dbg.h"
+#include "mm_camera_interface.h"
 }
 
 using namespace android;

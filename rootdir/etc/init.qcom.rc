@@ -56,6 +56,7 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_cdsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
+    exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
     chown root audio /sys/kernel/boot_adsp/boot
 
     chown system graphics /sys/class/graphics/fb0/idle_time
@@ -391,7 +392,7 @@ on post-fs-data
 #    group nfc
 #    user system
 #    oneshot
-
+#
 service iop /vendor/bin/iop
     class main
     user root
@@ -501,10 +502,19 @@ service qcom-c_main-sh /vendor/bin/init.class_main.sh
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start wcnss-service
-#    start cnss_diag
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
+
+service vendor.cnd /vendor/bin/cnd
+    class main
+    user system
+    group system wifi inet radio wakelock net_admin
+
+service dpmQmiMgr /vendor/bin/dpmQmiMgr
+    class main
+    user system
+    group radio system
 
 service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
@@ -745,13 +755,13 @@ service iprenew_wigig0 /system/bin/dhcpcd -n
 #    user root
 #    group root
 #    oneshot
-
+#
 #service ptt_ffbm /vendor/bin/ptt_socket_app -f -d
 #    user root
 #    group root
 #    disabled
 #    oneshot
-
+#
 service wifi_ftmd /vendor/bin/wifi_ftmd
     user system
     group system inet net_admin
@@ -761,7 +771,7 @@ service wifi_ftmd /vendor/bin/wifi_ftmd
 
 on property:vendor.wifi.ftmd.load=true
     insmod /system/lib/modules/pronto/pronto_wlan.ko con_mode=5
-
+#
 #service cnss_diag /vendor/bin/cnss_diag -q -f
 #    class main
 #    user system
@@ -813,13 +823,13 @@ service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
 #    user radio
 #    group radio
 #    socket ssgqmig seqpacket 0660 radio inet
-
+#
 #service mlid /vendor/bin/mlid
 #    class late_start
 #    user gps
 #    group gps
 #    socket mlid stream 0666 gps gps
-
+#
 service loc_launcher /vendor/bin/loc_launcher
     class late_start
     user gps
@@ -884,7 +894,7 @@ on property:ro.vendor.ril.mbn_copy_completed=1
 #    class late_start
 #    user system
 #    group system drmrpc
-
+#
 service vendor.atfwd /vendor/bin/ATFWD-daemon
     class late_start
     user system
@@ -1048,12 +1058,12 @@ service vendor.LKCore-rel /vendor/bin/LKCore
 #    class late_start
 #    user system
 #    group system
-
+#
 #service esepmdaemon /vendor/bin/esepmdaemon
 #    class core
 #    user system
 #    group nfc
-
+#
 on charger
     setprop persist.sys.usb.config mass_storage
     start qcom-post-boot
@@ -1087,23 +1097,28 @@ on property:init.svc.surfaceflinger=restarting
 #on property:vendor.display.lcd_density=*
 #    setprop ro.sf.lcd_density ${vendor.display.lcd_density}
 
+service time_daemon /vendor/bin/time_daemon
+    class main
+    user root
+    group root
+
 #service qdmastatsd /vendor/bin/qdmastatsd
 #    class late_start
 #    user system
 #    group readproc system net_bw_stats radio
-
+#
 #service vendor.vppservice /vendor/bin/vppservice
 #    class main
 #    user media
 #    group camera
-
+#
 #service chre /vendor/bin/chre
 #    class late_start
 #    user system
 #    group system
 #    socket chre seqpacket 0660 root system
 #    shutdown critical
-
+#
 # Set vendor-ril lib path based on Meta version
 on property:vendor.rild.libpath=*
     setprop rild.libpath ${vendor.rild.libpath}
@@ -1115,7 +1130,7 @@ on property:ro.vendor.radio.noril=*
 #    class late_start
 #    user system
 #    group system
-
+#
 service vendor.power_off_alarm /vendor/bin/power_off_alarm
     class core
     group system

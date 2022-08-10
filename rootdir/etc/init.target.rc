@@ -125,17 +125,16 @@ on boot
     chown system system /mnt/vendor/persist/speccfg/submask
     chown system system /mnt/vendor/persist/speccfg/partition
 
+on property:sys.boot_completed=1
+    # Set BFQ I/O scheduler
+    setprop sys.io.scheduler "bfq"
+
 service bt-mac-generator /vendor/bin/bt-mac-generator
     class main
     user bluetooth
     group bluetooth
     oneshot
     disabled
-
-# Logic_volume
-service logic_volume /vendor/bin/logic_volume -f /vendor/etc/logic_volume.conf 
-    disabled
-    oneshot
 
 #Peripheral manager
 service vendor.per_mgr /vendor/bin/pm-service
@@ -368,7 +367,7 @@ service energy-awareness /vendor/bin/energy-awareness
 #    class late_start
 #    user root
 #    group system radio drmrpc
-
+#
 service vendor.pd_mapper /vendor/bin/pd-mapper
      class core
 
@@ -471,7 +470,7 @@ on charger
 #    class late_start
 #    user system
 #    group drmrpc
-
+#
 service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
      class main
      user root

@@ -1,0 +1,316 @@
+#
+# system.prop for sdm660
+#
+
+#rild.libpath=/system/lib/libreference-ril.so
+vendor.rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
+#rild.libargs=-d /dev/smd0
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
+
+# Display
+debug.sf.early_app_phase_offset_ns=1500000
+debug.sf.early_gl_app_phase_offset_ns=15000000
+debug.sf.early_gl_phase_offset_ns=3000000
+debug.sf.early_phase_offset_ns=1500000
+debug.sf.enable_gl_backpressure=1
+debug.sf.enable_hwc_vds=1
+debug.sf.hw=1
+debug.sf.latch_unsignaled=1
+vendor.gralloc.enable_fb_ubwc=1
+dev.pm.dyn_samplingrate=1
+persist.demo.hdmirotationlock=false
+debug.sf.recomputecrop=0
+ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+ro.surface_flinger.max_virtual_display_dimension=4096
+ro.surface_flinger.protected_contents=true
+ro.surface_flinger.vsync_event_phase_offset_ns=2000000
+ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
+
+# Audio
+af.fast_track_multiplier=1
+audio_hal.period_size=192
+ro.qc.sdk.audio.fluencetype=fluence
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true
+tunnel.audio.encode=false
+persist.audio.ras.enabled=false
+audio.offload.buffer.size.kb=64
+audio.offload.min.duration.secs=30
+audio.offload.video=true
+audio.offload.pcm.16bit.enable=true
+audio.offload.pcm.24bit.enable=true
+audio.offload.track.enable=true
+audio.deep_buffer.media=true
+audio.heap.size.multiplier=7
+use.voice.path.for.pcm.voip=true
+audio.offload.multiaac.enable=true
+audio.dolby.ds2.enabled=false
+audio.dolby.ds2.hardbypass=false
+audio.offload.multiple.enabled=true
+audio.offload.passthrough=false
+ro.qc.sdk.audio.ssr=false
+audio.offload.gapless.enabled=true
+audio.safx.pbe.enabled=true
+audio.parser.ip.buffer.size=262144
+flac.sw.decoder.24bit.support=true
+persist.bt.a2dp_offload_cap=sbc
+use.qti.sw.alac.decoder=true
+use.qti.sw.ape.decoder=true
+qcom.hw.aac.encoder=true
+fm.a2dp.conc.disabled=true
+audio.noisy.broadcast.delay=600
+persist.audio.hifi.int_codec=true
+audio.offload.pstimeout.secs=3
+
+#ro.hdmi.enable=true
+#
+# system props for the cne module
+#
+persist.vendor.cne.feature=1
+
+#system props for the MM modules
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-scan=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
+mm.enable.smoothstreaming=true
+#codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC AIFF APE DSD
+vendor.mm.enable.qcom_parser=13631487
+persist.mm.enable.prefetch=true
+persist.media.treble_omx=false
+
+#property to enable narrow search range for video encoding
+debug.stagefright.omx_default_rank.sw-audio=1
+debug.stagefright.omx_default_rank=0
+vidc.enc.target_support_bframe=1
+video.disable.ubwc=1
+vendor.vidc.enc.disable_bframes=1
+vendor.vidc.dec.enable.downscalar=1
+
+# enable PQ feature by default
+vendor.vidc.enc.disable.pq=false
+
+# Additional buffers shared between Camera and Video
+vidc.enc.dcvs.extra-buff-count=2
+
+#Netflix custom property
+ro.netflix.bsp_rev=Q660-13149-1
+
+#codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC AIFF APE
+mm.enable.qcom_parser=1048559
+
+#
+# system props for the data modules
+#
+ro.vendor.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=true
+persist.vendor.data.mode=concurrent
+#system props for time-services
+persist.timed.enable=true
+
+#
+# system prop for opengles version
+#
+# 196610 is decimal for 0x30002 to report major/minor versions as 3/2
+ro.opengles.version=196610
+
+# system property for maximum number of HFP client connections
+bt.max.hfpclient.connections=1
+#force disable Bluetooth AAC by default
+persist.bt.a2dp.aac_disable=true
+
+# System property for cabl
+ro.qualcomm.cabl=0
+ro.vendor.display.cabl=0
+
+#
+# System props for telephony
+# System prop to turn on CdmaLTEPhone always
+telephony.lteOnCdmaDevice=1
+
+# SMARTISAN_BEGIN (CCM2005:CDMA SMS sent over TCH)
+# 2017-5-15 liulu:create the feature M0164744
+# 2017-10-11 guochenggang: porting to osborn-common M0191861
+# CDMA sms sent over TCH M0164744
+persist.radio.force_on_dc=true
+# SMARTISAN_END (CCM2005:CDMA SMS sent over TCH)
+
+# SMARTISAN_BEGIN (CCM5021:Enable modem save power property)
+# 2017-12-27 liulu:enable the property M0213013
+persist.radio.add_power_save=1
+# SMARTISAN_END (CCM5021:Enable modem save power property)
+
+#Simulate sdcard on /data/media
+#
+persist.fuse_sdcard=true
+
+#system prop for Bluetooth SOC type
+vendor.qcom.bluetooth.soc=cherokee
+
+#system prop for wipower support
+ro.vendor.bluetooth.emb_wp_mode=true
+ro.vendor.bluetooth.wipower=true
+ro.vendor.bt.bdaddr_path=/persist/bd_addr.txt
+
+#
+#snapdragon value add features
+#
+
+#system prop for RmNet Data
+persist.rmnet.data.enable=true
+persist.data.wda.enable=true
+persist.data.df.dl_mode=5
+persist.data.df.ul_mode=5
+persist.data.df.agg.dl_pkt=10
+persist.data.df.agg.dl_size=4096
+persist.data.df.mux_count=8
+persist.data.df.iwlan_mux=9
+persist.data.df.dev_name=rmnet_usb0
+
+#
+# system property determining camera HAL to be used for a Video call
+#
+# 1 is camera1
+# 2 or anything else is camera2
+persist.radio.VT_CAM_INTERFACE=2
+
+#property to enable user to access Google WFD settings
+persist.debug.wfd.enable=1
+#Enable stm-events
+persist.debug.coresight.config=stm-events
+##property to choose between virtual/external wfd display
+persist.sys.wfd.virtual=0
+
+# system prop for NFC DT
+ro.nfc.port=I2C
+ro.hardware.nfc_nci=nqx.default
+
+#property for vendor specific library
+ro.vendor.at_library=libqti-at.so
+
+#min/max cpu in core control
+ro.vendor.qti.core_ctl_min_cpu=2
+ro.vendor.qti.core_ctl_max_cpu=4
+
+#hwui properties
+ro.hwui.texture_cache_size=72
+ro.hwui.layer_cache_size=48
+ro.hwui.r_buffer_cache_size=8
+ro.hwui.path_cache_size=32
+ro.hwui.gradient_cache_size=1
+ro.hwui.drop_shadow_cache_size=6
+ro.hwui.texture_cache_flushrate=0.4
+ro.hwui.text_small_cache_width=1024
+ro.hwui.text_small_cache_height=1024
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_large_cache_height=2048
+
+# enable navigation bar
+qemu.hw.mainkeys=0
+
+#Bringup properties
+persist.vendor.radio.atfwd.start=true
+
+#property to enable VDS WFD solution
+persist.hwc.enable_vds=1
+
+#Increase cached app limit
+ro.vendor.qti.sys.fw.bg_apps_limit=60
+
+#Settings to enable sensors
+#Device Orientation sensor
+ro.vendor.sensors.dev_ori=true
+#Persistent Motion Detector
+ro.vendor.sensors.pmd=true
+#Stationary Detector
+ro.vendor.sensors.sta_detect=true
+#Motion Detector
+ro.vendor.sensors.mot_detect=true
+
+#Expose aux camera for below packages
+camera.aux.packagelist=org.codeaurora.snapcam
+
+#disable UBWC for camera
+persist.camera.preview.ubwc=0
+
+#Enable HAL3
+persist.camera.HAL3.enabled=1
+
+# Create zram disk
+ro.vendor.qti.config.zram=true
+
+#set maximum supported adapter voltage
+persist.chg.max_volt_mv=9000
+
+#Property to enable display default color mode
+vendor.display.enable_default_color_mode=1
+
+# Property for backup NTP Server
+persist.backup.ntpServer="0.pool.ntp.org"
+# enable IZat OptInApp overlay
+persist.vendor.overlay.izat.optin=rro
+
+#Disable Skip Validate
+vendor.display.disable_skip_validate=1
+
+#Headset button input device name
+ro.system.headsetinput=sdm660-snd-card-skush Button Jack
+
+#enable drm service
+drm.service.enabled=true
+
+# Multisim config
+persist.radio.multisim.config=dsds
+# Default network mode
+ro.telephony.default_network=22,22
+# Ap defined ecclist
+ro.ril.ecclist=911,112,000,08,110,118,119,999,120,122
+# Redirecting party number feature
+persist.radio.redir_party_num=0
+# Enable RAT in operator searching result
+persist.radio.rat_on=combine
+#Report PS operator name for SRLTE
+persist.radio.sglte.eons_domain=ps
+# Enable report reject cause when REG rejected permanently
+persist.radio.lte_vrte_ltd=1
+# Default APN protocal
+ro.radio.apn.protocal=IPV4V6
+# bar fake cell feature
+ro.radio.bar.fake.cell.feature=1
+
+#Enable IMS
+persist.radio.calls.on.ims=true
+persist.radio.jbims=1
+persist.radio.vrte_logic=1
+
+# SMARTISAN_BEGIN (CCM2016:FAKE BASE STATION DETECTION)
+# 2017-06-27 wangyun:create the feature M0170767
+# 2017-11-17 guochenggang: enable the property
+# Fake Base Station Detection M0170767
+persist.radio.bar_fake_gcell=true
+# SMARTISAN_END (CCM2016:FAKE BASE STATION DETECTION)
+
+# SMARTISAN_BEGIN (CCM5012:RIL CLIR RETURN)
+# 2017-09-13 hubin:added. M0186977
+persist.radio.facnotsup_as_nonw=1
+# SMARTISAN_END (CCM5012:RIL CLIR RETURN)
+
+#nfc fw update not allowed by default
+persist.fw.update.allowed=0
+
+# CA config
+ro.radio.ca.enable=true
